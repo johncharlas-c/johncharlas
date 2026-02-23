@@ -3,169 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>John Charlas | Professional Portfolio</title>
+<title>John Charlas | Premium Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- SwiperJS CDN for carousel -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <style>
   /* Base Styles */
+  :root {
+    --primary-color: #1e3a8a;
+    --secondary-color: #3b82f6;
+    --bg-light: #f0f4f8;
+    --bg-dark: #121212;
+    --text-light: #333;
+    --text-dark: #eee;
+  }
   body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    background: #f0f4f8;
-    color: #333;
+    background: var(--bg-light);
+    color: var(--text-light);
+    transition: background 0.4s, color 0.4s;
+  }
+  body.dark {
+    background: var(--bg-dark);
+    color: var(--text-dark);
   }
 
-  /* Header Section */
+  /* Header */
   header {
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     text-align: center;
     padding: 80px 20px;
-    position: relative;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    position: relative;
   }
-  header h1 {
-    font-size: 3em;
-    margin: 0;
+  header h1 { font-size: 3em; margin: 0; }
+  header p { font-size: 1.3em; margin: 10px 0 0; }
+
+  /* Dark/Light toggle button */
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--secondary-color);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1000;
+    transition: background 0.3s;
   }
-  header p {
-    font-size: 1.3em;
-    margin: 10px 0 0;
-    font-weight: 400;
-  }
+  .theme-toggle:hover { background: var(--primary-color); }
 
   /* Section Titles */
-  section {
-    max-width: 1000px;
-    margin: 80px auto;
-    padding: 0 20px;
-  }
-  h2 {
-    color: #1e3a8a;
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 40px;
-    position: relative;
-  }
-  h2::after {
-    content: '';
-    width: 60px;
-    height: 4px;
-    background: #3b82f6;
-    display: block;
-    margin: 10px auto 0;
-    border-radius: 2px;
-  }
+  section { max-width: 1000px; margin: 80px auto; padding: 0 20px; }
+  h2 { text-align: center; font-size: 2em; margin-bottom: 40px; color: var(--primary-color); position: relative; }
+  h2::after { content: ''; width: 60px; height: 4px; background: var(--secondary-color); display: block; margin: 10px auto 0; border-radius: 2px; }
 
-  /* Experience Cards */
-  .experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-  }
-  .experience-card {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .experience-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-  }
-  .experience-card img {
-    width: 60px;
-    margin-bottom: 15px;
-  }
-  .experience-card h3 {
-    margin: 0 0 5px;
-    color: #1e3a8a;
-  }
-  .experience-card p {
-    font-size: 0.95em;
-    line-height: 1.4em;
-  }
+  /* Swiper carousel styles */
+  .swiper { padding: 20px 0; }
+  .swiper-slide { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; align-items: center; }
+  body.dark .swiper-slide { background: #1e1e1e; box-shadow: 0 10px 20px rgba(255,255,255,0.05); }
+  .swiper-slide:hover { transform: translateY(-8px); }
+  .swiper-slide img { width: 60px; margin-bottom: 15px; transition: transform 0.3s; }
+  .swiper-slide img:hover { transform: scale(1.1) rotate(10deg); }
+  .swiper-slide h3 { margin: 0 0 10px; color: var(--primary-color); }
+  .swiper-slide p { font-size: 0.95em; text-align: center; }
 
-  /* Tools Grid */
-  .tools-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  .tool-logo {
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .tool-logo img {
-    max-width: 60px;
-    max-height: 60px;
-  }
-  .tool-logo:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-  }
+  /* Tools Grid inside Swiper */
+  .tool-logo { display: flex; justify-content: center; align-items: center; width: 80px; height: 80px; border-radius: 15px; background: white; box-shadow: 0 6px 15px rgba(0,0,0,0.1); transition: transform 0.3s; margin: auto; }
+  body.dark .tool-logo { background: #1e1e1e; box-shadow: 0 6px 15px rgba(255,255,255,0.05); }
+  .tool-logo img { max-width: 60px; max-height: 60px; }
 
-  /* Skills Bars */
-  .skills-container {
-    max-width: 700px;
-    margin: auto;
-  }
-  .skill {
-    margin-bottom: 20px;
-  }
-  .skill-name {
-    font-weight: 500;
-    margin-bottom: 6px;
-  }
-  .skill-bar {
-    background: #ddd;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .skill-bar span {
-    display: block;
-    height: 22px;
-    width: 0;
-    background: linear-gradient(90deg, #3b82f6, #1e3a8a);
-    text-align: right;
-    padding-right: 10px;
-    line-height: 22px;
-    color: white;
-    font-size: 0.9em;
-    border-radius: 20px;
-    animation: fillBar 2s forwards;
-  }
-  @keyframes fillBar {
-    0% { width: 0; }
-    100% { width: var(--width); }
-  }
+  /* Skills bars */
+  .skills-container { max-width: 700px; margin: auto; }
+  .skill { margin-bottom: 20px; }
+  .skill-name { font-weight: 500; margin-bottom: 6px; }
+  .skill-bar { background: #ddd; border-radius: 20px; overflow: hidden; }
+  body.dark .skill-bar { background: #333; }
+  .skill-bar span { display: block; height: 22px; width: 0; background: linear-gradient(90deg, var(--secondary-color), var(--primary-color)); text-align: right; padding-right: 10px; line-height: 22px; color: white; font-size: 0.9em; border-radius: 20px; animation: fillBar 2s forwards; }
+  @keyframes fillBar { 0% { width: 0; } 100% { width: var(--width); } }
 
-  /* Certifications Grid */
-  .cert-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-  }
-  .cert-grid img {
-    width: 140px;
-    transition: transform 0.3s;
-  }
-  .cert-grid img:hover {
-    transform: scale(1.1);
+  /* Certifications grid */
+  .cert-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
+  .cert-grid img { width: 140px; transition: transform 0.3s; }
+  .cert-grid img:hover { transform: scale(1.1); }
+
+  /* Responsive */
+  @media(max-width: 600px) {
+    header h1 { font-size: 2.2em; }
+    header p { font-size: 1em; }
   }
 </style>
 </head>
 <body>
+
+<button class="theme-toggle">Toggle Theme</button>
 
 <header>
   <h1>John Charlas</h1>
@@ -174,31 +111,41 @@
 
 <section class="experience">
   <h2>Experience</h2>
-  <div class="experience-grid">
-    <div class="experience-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat Logo">
-      <h3>Technical Account Manager</h3>
-      <p>Red Hat | 2024–2025</p>
-      <p>Managed enterprise cloud migrations, optimized Linux deployments, and provided key customer support.</p>
+  <div class="swiper experience-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat">
+        <h3>Technical Account Manager</h3>
+        <p>Red Hat | 2024–2025<br>Managed cloud migrations, optimized Linux deployments, and provided customer support.</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS">
+        <h3>Solutions Architect</h3>
+        <p>AWS | 2022–2024<br>Designed high-availability architectures and implemented automation & migration strategies.</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible">
+        <h3>Automation Specialist</h3>
+        <p>Implemented Ansible-based automation, improved operational efficiency, and managed integrations.</p>
+      </div>
     </div>
-    <div class="experience-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS Logo">
-      <h3>Solutions Architect</h3>
-      <p>AWS | 2022–2024</p>
-      <p>Designed high-availability architectures, automated deployments, and implemented migration strategies.</p>
-    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
 </section>
 
 <section class="tools">
   <h2>Tools & Technologies</h2>
-  <div class="tools-grid">
-    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat"></div>
-    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS"></div>
-    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" alt="Kubernetes"></div>
-    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript"></div>
-    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Docker_logo.svg" alt="Docker"></div>
-    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible"></div>
+  <div class="swiper tools-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat"></div>
+      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS"></div>
+      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" alt="Kubernetes"></div>
+      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Docker_logo.svg" alt="Docker"></div>
+      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible"></div>
+    </div>
+    <div class="swiper-pagination"></div>
   </div>
 </section>
 
@@ -209,7 +156,7 @@
     <div class="skill"><div class="skill-name">Mission Critical Applications</div><div class="skill-bar"><span style="--width:85%">85%</span></div></div>
     <div class="skill"><div class="skill-name">Customer Implementation & Support</div><div class="skill-bar"><span style="--width:80%">80%</span></div></div>
     <div class="skill"><div class="skill-name">Solution Testing & Deployment</div><div class="skill-bar"><span style="--width:75%">75%</span></div></div>
-    <div class="skill"><div class="skill-name">Requirements Analysis</div><div class="skill-bar"><span style="--width:85%">85%</span></div></div>
+    <div class="skill"><div class="skill-name">Migration & Integration Strategies</div><div class="skill-bar"><span style="--width:85%">85%</span></div></div>
   </div>
 </section>
 
@@ -222,5 +169,30 @@
   </div>
 </section>
 
+<!-- SwiperJS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  // Initialize Swipers
+  const experienceSwiper = new Swiper('.experience-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    pagination: { el: '.swiper-pagination', clickable: true },
+  });
+  const toolsSwiper = new Swiper('.tools-swiper', {
+    slidesPerView: 3,
+    spaceBetween: 20,
+    loop: true,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: { 600: { slidesPerView: 4 }, 900: { slidesPerView: 5 } }
+  });
+
+  // Theme Toggle
+  const toggleBtn = document.querySelector('.theme-toggle');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+  });
+</script>
 </body>
 </html>
