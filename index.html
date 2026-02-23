@@ -3,231 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>John Charlas | Staff Platform Architect & SRE</title>
-
-<meta name="description" content="Staff-level Platform Architect & Site Reliability Engineer specializing in cloud-native, FinTech-scale systems, Kubernetes, and high-availability architectures.">
-<meta name="keywords" content="SRE, Platform Architect, Kubernetes, FinTech, AWS, Azure, Reliability Engineering">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<title>John Charlas - Professional Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#f9fafb; --text:#0f172a; --card:rgba(255,255,255,.9); --accent:#2563eb;
-}
-body.dark {
-  --bg:#020617; --text:#e5e7eb; --card:rgba(17,24,39,.9); --accent:#22d3ee;
-}
-body {
-  margin:0; font-family:Inter,sans-serif;
-  background:var(--bg); color:var(--text);
-}
-header {
-  min-height:100vh;
-  background:
-    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-    url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2000&q=80")
-    center/cover no-repeat;
-  display:flex; align-items:center; padding:0 10%;
-}
-.hero {
-  background:var(--card); backdrop-filter:blur(14px);
-  padding:60px; border-radius:22px; max-width:920px;
-}
-.hero h1 { font-size:3.2rem; margin:0; }
-.hero h2 { color:var(--accent); font-weight:500; }
-
-.actions {
-  position:fixed; top:28px; right:28px;
-  display:flex; gap:12px; z-index:999;
-}
-.actions a, .actions button {
-  background:var(--card); border:none;
-  padding:12px 16px; border-radius:12px;
-  font-weight:600; cursor:pointer;
-  color:var(--text);
-}
-
-section {
-  padding:90px 10%;
-  opacity:0; transform:translateY(50px);
-  transition:.9s ease;
-}
-section.show { opacity:1; transform:none; }
-
-.section-title {
-  font-size:2.3rem;
-  border-left:6px solid var(--accent);
-  padding-left:18px; margin-bottom:50px;
-}
-
-.metrics {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:30px;
-}
-.metric {
-  background:var(--card); padding:35px;
-  border-radius:20px; text-align:center;
-}
-.metric h3 { font-size:2.6rem; color:var(--accent); margin:0; }
-
-.arch {
-  background:var(--card);
-  padding:45px; border-radius:22px;
-  line-height:1.8;
-}
-
-.tech {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:36px;
-}
-.tech img {
-  width:90px; margin:auto;
-  filter:grayscale(100%);
-  transition:.3s;
-}
-.tech img:hover { filter:none; transform:scale(1.15); }
-
-.skill { margin-bottom:28px; }
-.skill-title {
-  display:flex; justify-content:space-between;
-  font-weight:600;
-}
-.bar {
-  background:#e5e7eb; border-radius:20px;
-  overflow:hidden; margin-top:8px;
-}
-.bar span {
-  display:block; height:15px; width:0;
-  background:linear-gradient(90deg,var(--accent),#22d3ee);
-  transition:width 2.2s ease;
-}
-
-.github {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:28px;
-}
-.repo {
-  background:var(--card); padding:26px;
-  border-radius:18px;
-}
-
-footer {
-  background:#020617; color:#9ca3af;
-  text-align:center; padding:50px;
-}
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: #f5f7fa;
+    color: #333;
+  }
+  header {
+    background: #1e3a8a;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.5em;
+  }
+  header p {
+    font-size: 1.2em;
+    margin: 5px 0 0;
+  }
+  section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+  h2 {
+    color: #1e3a8a;
+    margin-bottom: 20px;
+  }
+  .experience, .tools, .skills, .certifications {
+    margin-bottom: 50px;
+  }
+  .experience-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .experience-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 20px;
+  }
+  .tools-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .tools-icons img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  .skill-bar {
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+  .skill-bar span {
+    display: block;
+    height: 20px;
+    background: #1e3a8a;
+    width: 0;
+    color: white;
+    text-align: right;
+    padding-right: 10px;
+    line-height: 20px;
+    font-size: 0.9em;
+    border-radius: 20px;
+  }
+  .certifications img {
+    width: 120px;
+    margin: 10px;
+    vertical-align: middle;
+  }
 </style>
 </head>
-
 <body>
 
-<div class="actions">
-  <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank">GitHub</a>
-  <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
-  <a href="resume/John_Charlas_SRE.pdf" download>Resume</a>
-  <button id="theme">🌙</button>
-</div>
-
 <header>
-  <div class="hero">
-    <h1>John Charlas</h1>
-    <h2>Staff Platform Architect • Site Reliability Engineer</h2>
-    <p>
-      I design and operate <strong>mission-critical, FinTech-grade platforms</strong>
-      with strict SLAs, security boundaries, and scale constraints.
-      Specialized in Kubernetes, SRE economics, and cloud-native reliability.
-    </p>
-  </div>
+  <h1>John Charlas</h1>
+  <p>Cloud Architect | Technical Manager | DevOps Enthusiast</p>
 </header>
 
-<section>
-  <div class="section-title">Reliability at Scale</div>
-  <div class="metrics">
-    <div class="metric"><h3>99.99%</h3><p>Availability SLO</p></div>
-    <div class="metric"><h3>&lt;50ms</h3><p>P95 Latency</p></div>
-    <div class="metric"><h3>30%</h3><p>Infra Cost Reduction</p></div>
-    <div class="metric"><h3>1000+</h3><p>Nodes / Clusters</p></div>
+<section class="experience">
+  <h2>Experience</h2>
+  
+  <div class="experience-item">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat Logo">
+    <div>
+      <h3>Technical Account Manager</h3>
+      <p>Red Hat | 2024–2025</p>
+      <p>Managed enterprise cloud migrations, optimized Linux deployments, provided customer support.</p>
+    </div>
+  </div>
+
+  <div class="experience-item">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS Logo">
+    <div>
+      <h3>Solutions Architect</h3>
+      <p>AWS | 2022–2024</p>
+      <p>Designed high-availability architectures, implemented automation, and migration strategies.</p>
+    </div>
+  </div>
+
+</section>
+
+<section class="tools">
+  <h2>Tools & Technologies</h2>
+  <div class="tools-icons">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" alt="Kubernetes">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Java_Logo.svg" alt="Java">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Docker_logo.svg" alt="Docker">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Prometheus_black.svg" alt="Prometheus">
   </div>
 </section>
 
-<section>
-  <div class="section-title">FinTech Platform Architecture</div>
-  <div class="arch">
-    <strong>Reference Architecture:</strong><br><br>
-    Multi-region Kubernetes clusters fronted by L7 load balancing,
-    zero-trust service-to-service authentication, GitOps-driven delivery,
-    immutable infrastructure, centralized observability, and automated
-    incident response aligned to SRE error budgets.
-  </div>
+<section class="skills">
+  <h2>Core Skills</h2>
+  <div class="skill-bar"><span style="width: 90%;">System Architecture & Design</span></div>
+  <div class="skill-bar"><span style="width: 85%;">Mission Critical Applications</span></div>
+  <div class="skill-bar"><span style="width: 80%;">Customer Implementation & Support</span></div>
+  <div class="skill-bar"><span style="width: 75%;">Solution Testing & Deployment</span></div>
+  <div class="skill-bar"><span style="width: 85%;">Requirements Analysis</span></div>
+  <div class="skill-bar"><span style="width: 80%;">Migration & Integration Strategies</span></div>
 </section>
 
-<section>
-  <div class="section-title">Technology Stack</div>
-  <div class="tech">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aws/aws-original.svg">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg">
-  </div>
+<section class="certifications">
+  <h2>Certifications</h2>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/CKA_cert_badge.png" alt="CKA Badge">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/AWS_Solutions_Architect_Professional.png" alt="AWS Solutions Architect">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="RHCA Badge">
 </section>
-
-<section>
-  <div class="section-title">Core Expertise</div>
-  <div class="skill"><div class="skill-title"><span>SRE & Kubernetes</span><span>95%</span></div><div class="bar"><span data="95%"></span></div></div>
-  <div class="skill"><div class="skill-title"><span>Cloud Architecture</span><span>92%</span></div><div class="bar"><span data="92%"></span></div></div>
-  <div class="skill"><div class="skill-title"><span>Automation & GitOps</span><span>90%</span></div><div class="bar"><span data="90%"></span></div></div>
-</section>
-
-<section>
-  <div class="section-title">Open Source & Engineering Proof</div>
-  <div id="repos" class="github"></div>
-</section>
-
-<footer>
-  <p>Singapore • Platform Architect • SRE</p>
-  <p>© 2026 John Charlas</p>
-</footer>
-
-<script>
-/* Scroll + bars */
-const sections=document.querySelectorAll("section");
-const obs=new IntersectionObserver(e=>{
- e.forEach(x=>{
-  if(x.isIntersecting){
-   x.target.classList.add("show");
-   x.target.querySelectorAll(".bar span")
-    .forEach(b=>b.style.width=b.getAttribute("data"));
-  }
- });
-},{threshold:.25});
-sections.forEach(s=>obs.observe(s));
-
-/* Dark mode */
-const t=document.getElementById("theme");
-if(localStorage.theme==="dark")document.body.classList.add("dark");
-t.onclick=()=>{
- document.body.classList.toggle("dark");
- localStorage.theme=document.body.classList.contains("dark")?"dark":"light";
-};
-
-/* GitHub repos */
-fetch("https://api.github.com/users/YOUR_GITHUB_USERNAME/repos?sort=updated")
- .then(r=>r.json()).then(d=>{
-  const c=document.getElementById("repos");
-  d.slice(0,6).forEach(r=>{
-    c.innerHTML+=`
-    <div class="repo">
-      <h4>${r.name}</h4>
-      <p>${r.description||"Engineering repository"}</p>
-    </div>`;
-  });
-});
-</script>
 
 </body>
 </html>
