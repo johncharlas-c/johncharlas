@@ -3,92 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>John Charlas - Professional Profile</title>
+<title>John Charlas | Professional Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
+  /* Base Styles */
   body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    background: #f5f7fa;
+    background: #f0f4f8;
     color: #333;
   }
+
+  /* Header Section */
   header {
-    background: #1e3a8a;
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
     color: white;
-    padding: 40px 20px;
     text-align: center;
+    padding: 80px 20px;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   }
   header h1 {
+    font-size: 3em;
     margin: 0;
-    font-size: 2.5em;
   }
   header p {
-    font-size: 1.2em;
-    margin: 5px 0 0;
+    font-size: 1.3em;
+    margin: 10px 0 0;
+    font-weight: 400;
   }
+
+  /* Section Titles */
   section {
-    padding: 40px 20px;
     max-width: 1000px;
-    margin: auto;
+    margin: 80px auto;
+    padding: 0 20px;
   }
   h2 {
     color: #1e3a8a;
-    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 40px;
+    position: relative;
   }
-  .experience, .tools, .skills, .certifications {
-    margin-bottom: 50px;
-  }
-  .experience-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-  .experience-item img {
+  h2::after {
+    content: '';
     width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin-right: 20px;
+    height: 4px;
+    background: #3b82f6;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
   }
-  .tools-icons {
+
+  /* Experience Cards */
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  .experience-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .experience-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  }
+  .experience-card img {
+    width: 60px;
+    margin-bottom: 15px;
+  }
+  .experience-card h3 {
+    margin: 0 0 5px;
+    color: #1e3a8a;
+  }
+  .experience-card p {
+    font-size: 0.95em;
+    line-height: 1.4em;
+  }
+
+  /* Tools Grid */
+  .tools-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    justify-content: center;
+    gap: 20px;
   }
-  .tools-icons img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
+  .tool-logo {
     background: white;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    padding: 15px;
+    border-radius: 15px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .tool-logo img {
+    max-width: 60px;
+    max-height: 60px;
+  }
+  .tool-logo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  }
+
+  /* Skills Bars */
+  .skills-container {
+    max-width: 700px;
+    margin: auto;
+  }
+  .skill {
+    margin-bottom: 20px;
+  }
+  .skill-name {
+    font-weight: 500;
+    margin-bottom: 6px;
   }
   .skill-bar {
     background: #ddd;
     border-radius: 20px;
     overflow: hidden;
-    margin-bottom: 15px;
   }
   .skill-bar span {
     display: block;
-    height: 20px;
-    background: #1e3a8a;
+    height: 22px;
     width: 0;
-    color: white;
+    background: linear-gradient(90deg, #3b82f6, #1e3a8a);
     text-align: right;
     padding-right: 10px;
-    line-height: 20px;
+    line-height: 22px;
+    color: white;
     font-size: 0.9em;
     border-radius: 20px;
+    animation: fillBar 2s forwards;
   }
-  .certifications img {
-    width: 120px;
-    margin: 10px;
-    vertical-align: middle;
+  @keyframes fillBar {
+    0% { width: 0; }
+    100% { width: var(--width); }
+  }
+
+  /* Certifications Grid */
+  .cert-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+  .cert-grid img {
+    width: 140px;
+    transition: transform 0.3s;
+  }
+  .cert-grid img:hover {
+    transform: scale(1.1);
   }
 </style>
 </head>
@@ -96,61 +169,57 @@
 
 <header>
   <h1>John Charlas</h1>
-  <p>Cloud Architect | Technical Manager | DevOps Enthusiast</p>
+  <p>Cloud Architect | Technical Manager | DevOps Specialist</p>
 </header>
 
 <section class="experience">
   <h2>Experience</h2>
-  
-  <div class="experience-item">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat Logo">
-    <div>
+  <div class="experience-grid">
+    <div class="experience-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat Logo">
       <h3>Technical Account Manager</h3>
       <p>Red Hat | 2024–2025</p>
-      <p>Managed enterprise cloud migrations, optimized Linux deployments, provided customer support.</p>
+      <p>Managed enterprise cloud migrations, optimized Linux deployments, and provided key customer support.</p>
     </div>
-  </div>
-
-  <div class="experience-item">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS Logo">
-    <div>
+    <div class="experience-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS Logo">
       <h3>Solutions Architect</h3>
       <p>AWS | 2022–2024</p>
-      <p>Designed high-availability architectures, implemented automation, and migration strategies.</p>
+      <p>Designed high-availability architectures, automated deployments, and implemented migration strategies.</p>
     </div>
   </div>
-
 </section>
 
 <section class="tools">
   <h2>Tools & Technologies</h2>
-  <div class="tools-icons">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" alt="Kubernetes">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Java_Logo.svg" alt="Java">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Docker_logo.svg" alt="Docker">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Prometheus_black.svg" alt="Prometheus">
+  <div class="tools-grid">
+    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat"></div>
+    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS"></div>
+    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" alt="Kubernetes"></div>
+    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript"></div>
+    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Docker_logo.svg" alt="Docker"></div>
+    <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible"></div>
   </div>
 </section>
 
 <section class="skills">
   <h2>Core Skills</h2>
-  <div class="skill-bar"><span style="width: 90%;">System Architecture & Design</span></div>
-  <div class="skill-bar"><span style="width: 85%;">Mission Critical Applications</span></div>
-  <div class="skill-bar"><span style="width: 80%;">Customer Implementation & Support</span></div>
-  <div class="skill-bar"><span style="width: 75%;">Solution Testing & Deployment</span></div>
-  <div class="skill-bar"><span style="width: 85%;">Requirements Analysis</span></div>
-  <div class="skill-bar"><span style="width: 80%;">Migration & Integration Strategies</span></div>
+  <div class="skills-container">
+    <div class="skill"><div class="skill-name">System Architecture & Design</div><div class="skill-bar"><span style="--width:90%">90%</span></div></div>
+    <div class="skill"><div class="skill-name">Mission Critical Applications</div><div class="skill-bar"><span style="--width:85%">85%</span></div></div>
+    <div class="skill"><div class="skill-name">Customer Implementation & Support</div><div class="skill-bar"><span style="--width:80%">80%</span></div></div>
+    <div class="skill"><div class="skill-name">Solution Testing & Deployment</div><div class="skill-bar"><span style="--width:75%">75%</span></div></div>
+    <div class="skill"><div class="skill-name">Requirements Analysis</div><div class="skill-bar"><span style="--width:85%">85%</span></div></div>
+  </div>
 </section>
 
 <section class="certifications">
   <h2>Certifications</h2>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/CKA_cert_badge.png" alt="CKA Badge">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/AWS_Solutions_Architect_Professional.png" alt="AWS Solutions Architect">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="RHCA Badge">
+  <div class="cert-grid">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/CKA_cert_badge.png" alt="CKA Certification">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/AWS_Solutions_Architect_Professional.png" alt="AWS Solutions Architect">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="RHCA Certification">
+  </div>
 </section>
 
 </body>
