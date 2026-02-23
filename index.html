@@ -4,111 +4,140 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>John Charlas | Premium Portfolio</title>
+
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- SwiperJS CDN for carousel -->
+<!-- SwiperJS CDN for carousels -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+<!-- Styles -->
 <style>
-  /* Base Styles */
-  :root {
-    --primary-color: #1e3a8a;
-    --secondary-color: #3b82f6;
-    --bg-light: #f0f4f8;
-    --bg-dark: #121212;
-    --text-light: #333;
-    --text-dark: #eee;
-  }
-  body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    background: var(--bg-light);
-    color: var(--text-light);
-    transition: background 0.4s, color 0.4s;
-  }
-  body.dark {
-    background: var(--bg-dark);
-    color: var(--text-dark);
-  }
+:root {
+  --primary-color: #1e3a8a;
+  --secondary-color: #3b82f6;
+  --bg-light: #f0f4f8;
+  --bg-dark: #121212;
+  --text-light: #333;
+  --text-dark: #eee;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background: var(--bg-light);
+  color: var(--text-light);
+  transition: background 0.5s, color 0.5s;
+}
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
 
-  /* Header */
-  header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    position: relative;
-  }
-  header h1 { font-size: 3em; margin: 0; }
-  header p { font-size: 1.3em; margin: 10px 0 0; }
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--secondary-color);
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1000;
+  transition: background 0.3s;
+}
+.theme-toggle:hover { background: var(--primary-color); }
 
-  /* Dark/Light toggle button */
-  .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--secondary-color);
-    border: none;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    z-index: 1000;
-    transition: background 0.3s;
-  }
-  .theme-toggle:hover { background: var(--primary-color); }
+/* Hero Section */
+header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  position: relative;
+  overflow: hidden;
+}
+header h1 {
+  font-size: 4em;
+  margin: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+header p {
+  font-size: 1.5em;
+  margin-top: 15px;
+  animation: fadeInUp 1.5s ease forwards;
+}
+@keyframes fadeInUp { from { opacity:0; transform: translateY(40px);} to { opacity:1; transform: translateY(0);} }
 
-  /* Section Titles */
-  section { max-width: 1000px; margin: 80px auto; padding: 0 20px; }
-  h2 { text-align: center; font-size: 2em; margin-bottom: 40px; color: var(--primary-color); position: relative; }
-  h2::after { content: ''; width: 60px; height: 4px; background: var(--secondary-color); display: block; margin: 10px auto 0; border-radius: 2px; }
+/* Particle canvas */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  z-index:0;
+}
 
-  /* Swiper carousel styles */
-  .swiper { padding: 20px 0; }
-  .swiper-slide { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); transition: transform 0.3s; display: flex; flex-direction: column; align-items: center; }
-  body.dark .swiper-slide { background: #1e1e1e; box-shadow: 0 10px 20px rgba(255,255,255,0.05); }
-  .swiper-slide:hover { transform: translateY(-8px); }
-  .swiper-slide img { width: 60px; margin-bottom: 15px; transition: transform 0.3s; }
-  .swiper-slide img:hover { transform: scale(1.1) rotate(10deg); }
-  .swiper-slide h3 { margin: 0 0 10px; color: var(--primary-color); }
-  .swiper-slide p { font-size: 0.95em; text-align: center; }
+/* Section Titles */
+section { max-width: 1000px; margin: 80px auto; padding: 0 20px; position: relative; z-index:1; }
+h2 { text-align: center; font-size: 2em; margin-bottom: 40px; color: var(--primary-color); position: relative; }
+h2::after { content: ''; width: 60px; height: 4px; background: var(--secondary-color); display: block; margin: 10px auto 0; border-radius: 2px; }
 
-  /* Tools Grid inside Swiper */
-  .tool-logo { display: flex; justify-content: center; align-items: center; width: 80px; height: 80px; border-radius: 15px; background: white; box-shadow: 0 6px 15px rgba(0,0,0,0.1); transition: transform 0.3s; margin: auto; }
-  body.dark .tool-logo { background: #1e1e1e; box-shadow: 0 6px 15px rgba(255,255,255,0.05); }
-  .tool-logo img { max-width: 60px; max-height: 60px; }
+/* Experience carousel */
+.swiper-slide { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; transition: transform 0.3s; }
+body.dark .swiper-slide { background: #1e1e1e; box-shadow: 0 10px 25px rgba(255,255,255,0.05); }
+.swiper-slide:hover { transform: rotateY(5deg) scale(1.05); }
+.swiper-slide img { width: 60px; margin-bottom: 15px; transition: transform 0.5s; }
+.swiper-slide img:hover { transform: scale(1.2) rotate(10deg); }
+.swiper-slide h3 { margin: 0 0 10px; color: var(--primary-color); text-align: center; }
+.swiper-slide p { font-size: 0.95em; text-align: center; }
 
-  /* Skills bars */
-  .skills-container { max-width: 700px; margin: auto; }
-  .skill { margin-bottom: 20px; }
-  .skill-name { font-weight: 500; margin-bottom: 6px; }
-  .skill-bar { background: #ddd; border-radius: 20px; overflow: hidden; }
-  body.dark .skill-bar { background: #333; }
-  .skill-bar span { display: block; height: 22px; width: 0; background: linear-gradient(90deg, var(--secondary-color), var(--primary-color)); text-align: right; padding-right: 10px; line-height: 22px; color: white; font-size: 0.9em; border-radius: 20px; animation: fillBar 2s forwards; }
-  @keyframes fillBar { 0% { width: 0; } 100% { width: var(--width); } }
+/* Tools carousel */
+.tool-logo { display:flex; justify-content:center; align-items:center; width:100px; height:100px; border-radius:20px; background:white; box-shadow:0 6px 15px rgba(0,0,0,0.1); margin:auto; transition: transform 0.3s; }
+body.dark .tool-logo { background:#1e1e1e; box-shadow:0 6px 15px rgba(255,255,255,0.05); }
+.tool-logo img { max-width:70px; max-height:70px; transition: transform 0.3s; }
+.tool-logo:hover { transform: scale(1.2) rotate(-10deg); }
 
-  /* Certifications grid */
-  .cert-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
-  .cert-grid img { width: 140px; transition: transform 0.3s; }
-  .cert-grid img:hover { transform: scale(1.1); }
+/* Skills radial charts */
+.skills-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; }
+.skill-circle { position: relative; width:150px; height:150px; }
+.skill-circle svg { transform: rotate(-90deg); }
+.skill-circle circle { fill:none; stroke-width:15; stroke-linecap:round; }
+.skill-circle .bg { stroke:#ddd; }
+body.dark .skill-circle .bg { stroke:#333; }
+.skill-circle .progress { stroke: url(#grad); stroke-dasharray: 440; stroke-dashoffset: 440; animation: progressAnim 2s forwards; }
+@keyframes progressAnim { to { stroke-dashoffset: var(--offset); } }
+.skill-circle .skill-label { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-weight:bold; font-size:1em; text-align:center; }
 
-  /* Responsive */
-  @media(max-width: 600px) {
-    header h1 { font-size: 2.2em; }
-    header p { font-size: 1em; }
-  }
+/* Certifications */
+.cert-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
+.cert-grid img { width:140px; transition: transform 0.3s, box-shadow 0.3s; border-radius:10px; }
+.cert-grid img:hover { transform: scale(1.1); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+
+/* Responsive */
+@media(max-width:600px) { header h1{font-size:2.5em;} header p{font-size:1em;} }
 </style>
 </head>
 <body>
 
+<!-- Theme Toggle -->
 <button class="theme-toggle">Toggle Theme</button>
 
+<!-- Hero Section -->
 <header>
+  <canvas id="particles-js"></canvas>
   <h1>John Charlas</h1>
   <p>Cloud Architect | Technical Manager | DevOps Specialist</p>
 </header>
 
+<!-- Experience Carousel -->
 <section class="experience">
   <h2>Experience</h2>
   <div class="swiper experience-swiper">
@@ -116,17 +145,17 @@
       <div class="swiper-slide">
         <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat">
         <h3>Technical Account Manager</h3>
-        <p>Red Hat | 2024–2025<br>Managed cloud migrations, optimized Linux deployments, and provided customer support.</p>
+        <p>Red Hat | 2024–2025<br>Managed cloud migrations, optimized Linux deployments, customer support.</p>
       </div>
       <div class="swiper-slide">
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS">
         <h3>Solutions Architect</h3>
-        <p>AWS | 2022–2024<br>Designed high-availability architectures and implemented automation & migration strategies.</p>
+        <p>AWS | 2022–2024<br>Designed high-availability architectures and automated deployments.</p>
       </div>
       <div class="swiper-slide">
         <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible">
         <h3>Automation Specialist</h3>
-        <p>Implemented Ansible-based automation, improved operational efficiency, and managed integrations.</p>
+        <p>Implemented Ansible automation, improved operational efficiency, managed integrations.</p>
       </div>
     </div>
     <div class="swiper-pagination"></div>
@@ -135,6 +164,7 @@
   </div>
 </section>
 
+<!-- Tools Carousel -->
 <section class="tools">
   <h2>Tools & Technologies</h2>
   <div class="swiper tools-swiper">
@@ -149,17 +179,17 @@
   </div>
 </section>
 
+<!-- Skills -->
 <section class="skills">
   <h2>Core Skills</h2>
   <div class="skills-container">
-    <div class="skill"><div class="skill-name">System Architecture & Design</div><div class="skill-bar"><span style="--width:90%">90%</span></div></div>
-    <div class="skill"><div class="skill-name">Mission Critical Applications</div><div class="skill-bar"><span style="--width:85%">85%</span></div></div>
-    <div class="skill"><div class="skill-name">Customer Implementation & Support</div><div class="skill-bar"><span style="--width:80%">80%</span></div></div>
-    <div class="skill"><div class="skill-name">Solution Testing & Deployment</div><div class="skill-bar"><span style="--width:75%">75%</span></div></div>
-    <div class="skill"><div class="skill-name">Migration & Integration Strategies</div><div class="skill-bar"><span style="--width:85%">85%</span></div></div>
+    <div class="skill-circle" style="--offset:132;"><svg width="150" height="150"><defs><linearGradient id="grad"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></linearGradient></defs><circle class="bg" cx="75" cy="75" r="70"/><circle class="progress" cx="75" cy="75" r="70"/></svg><div class="skill-label">System Architecture<br>90%</div></div>
+    <div class="skill-circle" style="--offset:66;"><svg width="150" height="150"><defs><linearGradient id="grad"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></linearGradient></defs><circle class="bg" cx="75" cy="75" r="70"/><circle class="progress" cx="75" cy="75" r="70"/></svg><div class="skill-label">Mission Critical<br>85%</div></div>
+    <div class="skill-circle" style="--offset:88;"><svg width="150" height="150"><defs><linearGradient id="grad"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></linearGradient></defs><circle class="bg" cx="75" cy="75" r="70"/><circle class="progress" cx="75" cy="75" r="70"/></svg><div class="skill-label">Customer Support<br>80%</div></div>
   </div>
 </section>
 
+<!-- Certifications -->
 <section class="certifications">
   <h2>Certifications</h2>
   <div class="cert-grid">
@@ -169,30 +199,22 @@
   </div>
 </section>
 
-<!-- SwiperJS -->
+<!-- JS Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
-  // Initialize Swipers
-  const experienceSwiper = new Swiper('.experience-swiper', {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-    pagination: { el: '.swiper-pagination', clickable: true },
-  });
-  const toolsSwiper = new Swiper('.tools-swiper', {
-    slidesPerView: 3,
-    spaceBetween: 20,
-    loop: true,
-    pagination: { el: '.swiper-pagination', clickable: true },
-    breakpoints: { 600: { slidesPerView: 4 }, 900: { slidesPerView: 5 } }
-  });
+// Initialize Swipers
+const experienceSwiper = new Swiper('.experience-swiper', { slidesPerView: 1, spaceBetween: 30, loop: true, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, pagination: { el: '.swiper-pagination', clickable: true } });
+const toolsSwiper = new Swiper('.tools-swiper', { slidesPerView: 3, spaceBetween: 20, loop: true, pagination: { el: '.swiper-pagination', clickable: true }, breakpoints: { 600:{slidesPerView:4}, 900:{slidesPerView:5} } });
 
-  // Theme Toggle
-  const toggleBtn = document.querySelector('.theme-toggle');
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-  });
+// Theme toggle
+document.querySelector('.theme-toggle').addEventListener('click',()=>{document.body.classList.toggle('dark');});
+
+// Particle JS
+particlesJS("particles-js", {
+  "particles": { "number": { "value": 80 }, "size": { "value": 3 }, "move": { "speed": 2 }, "line_linked": { "enable": true } },
+  "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } }
+});
 </script>
 </body>
 </html>
