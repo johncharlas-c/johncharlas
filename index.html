@@ -8,191 +8,264 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --bg: #f9fafb;
+    --text: #0f172a;
+    --card: rgba(255,255,255,0.85);
+    --accent: #6366f1;
+}
+body.dark {
+    --bg: #020617;
+    --text: #e5e7eb;
+    --card: rgba(17,24,39,0.85);
+    --accent: #22d3ee;
+}
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    color: #1f2937;
-    background-color: #f9fafb;
+    background: var(--bg);
+    color: var(--text);
+    transition: all .3s ease;
 }
+
+/* HERO */
 header {
-    background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-    url('images/hero.jpg') center/cover no-repeat;
-    color: white;
-    padding: 100px 10%;
+    min-height: 100vh;
+    background:
+      linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+      url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1950&q=80")
+      center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
 }
-header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+.hero {
+    background: var(--card);
+    backdrop-filter: blur(14px);
+    padding: 60px;
+    border-radius: 20px;
+    max-width: 900px;
 }
-header h2 {
-    font-weight: 400;
-    color: #c7d2fe;
+.hero h1 { font-size: 3.2rem; margin: 0; }
+.hero h2 { font-weight: 400; color: var(--accent); }
+.hero p { line-height: 1.7; }
+
+/* ACTIONS */
+.actions {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    gap: 12px;
+    z-index: 999;
 }
-header p {
-    max-width: 700px;
-    line-height: 1.6;
+.actions a, .actions button {
+    background: var(--card);
+    border: none;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text);
 }
+
+/* SECTIONS */
 section {
-    padding: 70px 10%;
+    padding: 90px 10%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all .9s ease;
+}
+section.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 .section-title {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    border-left: 5px solid #6366f1;
-    padding-left: 15px;
+    font-size: 2.2rem;
+    border-left: 6px solid var(--accent);
+    padding-left: 16px;
+    margin-bottom: 50px;
 }
+
+/* ABOUT */
 .about {
     display: grid;
-    grid-template-columns: 200px auto;
+    grid-template-columns: 220px auto;
     gap: 40px;
-    align-items: center;
 }
 .about img {
-    width: 200px;
-    border-radius: 100px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    width: 220px;
+    border-radius: 50%;
+    border: 5px solid var(--accent);
 }
-.skills-grid {
+
+/* METRICS */
+.metrics {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
 }
-.skill-card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,.05);
+.metric {
+    background: var(--card);
+    padding: 35px;
+    border-radius: 18px;
+    text-align: center;
 }
-.timeline {
-    border-left: 3px solid #e5e7eb;
-    padding-left: 30px;
-}
-.timeline-item {
-    margin-bottom: 40px;
-}
-.timeline-item h3 {
+.metric h3 {
+    font-size: 2.6rem;
+    color: var(--accent);
     margin: 0;
-    color: #4f46e5;
 }
-.badges {
+
+/* LOGOS */
+.tech-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 35px;
+    align-items: center;
+}
+.tech-logos img {
+    width: 90px;
+    margin: auto;
+    filter: grayscale(100%);
+    transition: .3s;
+}
+.tech-logos img:hover {
+    filter: none;
+    transform: scale(1.15);
+}
+
+/* SKILLS */
+.skill { margin-bottom: 28px; }
+.skill-title {
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-.badge {
-    background: #eef2ff;
-    padding: 12px 18px;
-    border-radius: 20px;
+    justify-content: space-between;
     font-weight: 600;
 }
+.bar {
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+.bar span {
+    display: block;
+    height: 15px;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent), #22d3ee);
+    transition: width 2.2s ease;
+}
+
+/* FOOTER */
 footer {
-    background: #111827;
+    background: #020617;
     color: #9ca3af;
     text-align: center;
-    padding: 40px;
-}
-a {
-    color: #6366f1;
-    text-decoration: none;
+    padding: 50px;
 }
 </style>
 </head>
 
 <body>
 
+<div class="actions">
+    <a href="https://github.com/YOUR_GITHUB" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a>
+    <button id="themeToggle">🌙</button>
+</div>
+
 <header>
-    <h1>John Charlas</h1>
-    <h2>Platform Architect | Site Reliability Engineer | Cloud & Kubernetes Specialist</h2>
-    <p>
-        Platform Architect with deep expertise in mission-critical systems, cloud-native platforms,
-        Kubernetes, DevOps, and SRE practices. Proven track record in designing secure,
-        scalable, and highly available architectures across AWS, Azure, and hybrid environments.
-    </p>
+    <div class="hero">
+        <h1>John Charlas</h1>
+        <h2>Platform Architect • Site Reliability Engineer</h2>
+        <p>
+            I design and operate highly available, secure, and self-healing
+            cloud platforms. Specialized in Kubernetes, SRE, DevOps automation,
+            and enterprise-scale architectures across AWS, Azure, and hybrid environments.
+        </p>
+    </div>
 </header>
 
 <section>
     <div class="section-title">About Me</div>
     <div class="about">
-        <img src="images/profile.jpg" alt="John Charlas">
+        <img src="https://avatars.githubusercontent.com/u/9919?s=400">
         <p>
-            I specialize in building resilient platforms and self-healing infrastructure using
-            Kubernetes, Terraform, CI/CD, and observability stacks. With extensive experience
-            across banking, consulting, and enterprise cloud transformations, I bridge
-            business objectives with robust engineering solutions.
+            15+ years delivering mission-critical platforms for banking,
+            consulting, and cloud-native enterprises. Expert in Kubernetes,
+            observability, incident management, and platform modernization.
         </p>
     </div>
 </section>
 
 <section>
-    <div class="section-title">Core Skills</div>
-    <div class="skills-grid">
-        <div class="skill-card">
-            <h3>Architecture & SRE</h3>
-            <p>System Design, HA/DR, Incident & Problem Management, Self-Healing Platforms</p>
-        </div>
-        <div class="skill-card">
-            <h3>Cloud & Containers</h3>
-            <p>AWS, Azure, Kubernetes, OpenShift, EKS, AKS, Rancher</p>
-        </div>
-        <div class="skill-card">
-            <h3>DevOps & Automation</h3>
-            <p>Terraform, Ansible, Jenkins, ArgoCD, GitOps, Shell Scripting</p>
-        </div>
-        <div class="skill-card">
-            <h3>Observability & Security</h3>
-            <p>Prometheus, Grafana, Dynatrace, CVE Management, Certificate Management</p>
-        </div>
+    <div class="section-title">Impact at Scale</div>
+    <div class="metrics">
+        <div class="metric"><h3>99.99%</h3><p>Platform Uptime</p></div>
+        <div class="metric"><h3>50%+</h3><p>Deployment Time Reduction</p></div>
+        <div class="metric"><h3>30%</h3><p>Infrastructure Cost Savings</p></div>
+        <div class="metric"><h3>1000+</h3><p>Nodes Managed</p></div>
     </div>
 </section>
 
 <section>
-    <div class="section-title">Professional Experience</div>
-    <div class="timeline">
-        <div class="timeline-item">
-            <h3>Platform Architect – TeamLease Consultancy</h3>
-            <p><strong>Singapore | Oct 2025 – Present</strong></p>
-            <p>Defined enterprise platform architecture, aligning security, scalability, and automation
-               strategies across compute, network, identity, and observability layers.</p>
-        </div>
-
-        <div class="timeline-item">
-            <h3>Senior Technical Account Manager – Red Hat</h3>
-            <p><strong>Jan 2025 – Oct 2025</strong></p>
-            <p>Owned customer success for high-value enterprise accounts, managing escalations,
-               platform optimization, and renewals.</p>
-        </div>
-
-        <div class="timeline-item">
-            <h3>Senior Technical Consultant – Infrasoft Technologies</h3>
-            <p><strong>Dec 2022 – Dec 2024</strong></p>
-            <p>Designed Kubernetes platforms, CI/CD pipelines, monitoring stacks, and
-               cloud automation delivering major cost and deployment efficiency gains.</p>
-        </div>
-
-        <div class="timeline-item">
-            <h3>Senior Web Services Specialist – Standard Chartered Bank</h3>
-            <p><strong>May 2013 – May 2022</strong></p>
-            <p>Led middleware platforms (WebSphere, JBoss, MQ) supporting mission-critical
-               banking applications with strict availability and security requirements.</p>
-        </div>
+    <div class="section-title">Technology Stack</div>
+    <div class="tech-logos">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aws/aws-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg">
     </div>
 </section>
 
 <section>
-    <div class="section-title">Certifications</div>
-    <div class="badges">
-        <div class="badge">CKA – Kubernetes Administrator</div>
-        <div class="badge">Azure Solutions Architect</div>
-        <div class="badge">Azure DevOps Engineer Expert</div>
-        <div class="badge">Terraform Associate</div>
-        <div class="badge">CISM</div>
-    </div>
+    <div class="section-title">Core Expertise</div>
+
+    <div class="skill"><div class="skill-title"><span>Kubernetes & SRE</span><span>95%</span></div>
+        <div class="bar"><span data-level="95%"></span></div></div>
+
+    <div class="skill"><div class="skill-title"><span>AWS / Azure</span><span>90%</span></div>
+        <div class="bar"><span data-level="90%"></span></div></div>
+
+    <div class="skill"><div class="skill-title"><span>Terraform & Automation</span><span>92%</span></div>
+        <div class="bar"><span data-level="92%"></span></div></div>
+
+    <div class="skill"><div class="skill-title"><span>CI/CD & GitOps</span><span>88%</span></div>
+        <div class="bar"><span data-level="88%"></span></div></div>
 </section>
 
 <footer>
-    <p>📍 Singapore | 📧 jcharlazztechie@gmail.com | ☎ +65 8697-8609</p>
-    <p>© 2026 John Charlas — Platform Architect & SRE</p>
+    <p>📍 Singapore | 📧 jcharlazztechie@gmail.com | ☎ 658-697-8609</p>
+    <p>© 2026 John Charlas — Platform Architect</p>
 </footer>
+
+<script>
+/* Scroll animations + skill bars */
+const sections = document.querySelectorAll("section");
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add("show");
+            e.target.querySelectorAll(".bar span").forEach(b => {
+                b.style.width = b.dataset.level;
+            });
+        }
+    });
+}, { threshold: 0.25 });
+sections.forEach(s => observer.observe(s));
+
+/* Dark mode */
+const toggle = document.getElementById("themeToggle");
+if (localStorage.theme === "dark") document.body.classList.add("dark");
+toggle.onclick = () => {
+    document.body.classList.toggle("dark");
+    localStorage.theme = document.body.classList.contains("dark") ? "dark" : "light";
+};
+</script>
 
 </body>
 </html>
