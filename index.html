@@ -8,10 +8,16 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- SwiperJS CDN for carousels -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+<!-- SwiperJS CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 
-<!-- Styles -->
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
 <style>
 :root {
   --primary-color: #1e3a8a;
@@ -22,31 +28,30 @@
   --text-dark: #eee;
 }
 body {
-  font-family: 'Roboto', sans-serif;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
   background: var(--bg-light);
   color: var(--text-light);
   transition: background 0.5s, color 0.5s;
+  overflow-x: hidden;
 }
 body.dark {
   background: var(--bg-dark);
   color: var(--text-dark);
 }
-
 /* Theme toggle button */
 .theme-toggle {
   position: fixed;
   top: 20px;
   right: 20px;
   background: var(--secondary-color);
-  border: none;
   color: white;
+  border: none;
   padding: 12px 20px;
   border-radius: 25px;
   cursor: pointer;
-  font-weight: bold;
   z-index: 1000;
-  transition: background 0.3s;
+  font-weight: bold;
 }
 .theme-toggle:hover { background: var(--primary-color); }
 
@@ -57,164 +62,173 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
   text-align: center;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg,var(--primary-color),var(--secondary-color));
 }
 header h1 {
   font-size: 4em;
   margin: 0;
-  animation: fadeInUp 1s ease forwards;
+  animation: fadeInUp 1s forwards;
 }
 header p {
   font-size: 1.5em;
   margin-top: 15px;
-  animation: fadeInUp 1.5s ease forwards;
+  animation: fadeInUp 1.5s forwards;
 }
-@keyframes fadeInUp { from { opacity:0; transform: translateY(40px);} to { opacity:1; transform: translateY(0);} }
-
-/* Particle canvas */
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top:0;
-  left:0;
-  z-index:0;
-}
+@keyframes fadeInUp { from{opacity:0;transform:translateY(40px);} to{opacity:1;transform:translateY(0);} }
+#particles-js { position:absolute;width:100%;height:100%;top:0;left:0;z-index:0; }
 
 /* Section Titles */
-section { max-width: 1000px; margin: 80px auto; padding: 0 20px; position: relative; z-index:1; }
-h2 { text-align: center; font-size: 2em; margin-bottom: 40px; color: var(--primary-color); position: relative; }
-h2::after { content: ''; width: 60px; height: 4px; background: var(--secondary-color); display: block; margin: 10px auto 0; border-radius: 2px; }
+section { max-width:1000px;margin:80px auto;padding:0 20px;position:relative;z-index:1; }
+h2 { text-align:center;font-size:2em;margin-bottom:40px;color:var(--primary-color);position:relative; }
+h2::after { content:'';width:60px;height:4px;background:var(--secondary-color);display:block;margin:10px auto 0;border-radius:2px; }
 
-/* Experience carousel */
-.swiper-slide { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; transition: transform 0.3s; }
-body.dark .swiper-slide { background: #1e1e1e; box-shadow: 0 10px 25px rgba(255,255,255,0.05); }
+/* Swiper slides */
+.swiper-slide {
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  transition: transform 0.3s;
+}
+body.dark .swiper-slide { background:#1e1e1e; box-shadow:0 10px 25px rgba(255,255,255,0.05);}
 .swiper-slide:hover { transform: rotateY(5deg) scale(1.05); }
-.swiper-slide img { width: 60px; margin-bottom: 15px; transition: transform 0.5s; }
+.swiper-slide img { width:60px;margin-bottom:15px; transition: transform 0.5s; }
 .swiper-slide img:hover { transform: scale(1.2) rotate(10deg); }
-.swiper-slide h3 { margin: 0 0 10px; color: var(--primary-color); text-align: center; }
-.swiper-slide p { font-size: 0.95em; text-align: center; }
+.swiper-slide h3 { margin:0 0 10px;color:var(--primary-color); text-align:center; }
+.swiper-slide p { font-size:0.95em; text-align:center; }
 
-/* Tools carousel */
-.tool-logo { display:flex; justify-content:center; align-items:center; width:100px; height:100px; border-radius:20px; background:white; box-shadow:0 6px 15px rgba(0,0,0,0.1); margin:auto; transition: transform 0.3s; }
-body.dark .tool-logo { background:#1e1e1e; box-shadow:0 6px 15px rgba(255,255,255,0.05); }
+/* Tools */
+.tool-logo { display:flex;justify-content:center;align-items:center;width:100px;height:100px;border-radius:20px;background:white;box-shadow:0 6px 15px rgba(0,0,0,0.1);margin:auto;transition: transform 0.3s; }
+body.dark .tool-logo { background:#1e1e1e; box-shadow:0 6px 15px rgba(255,255,255,0.05);}
 .tool-logo img { max-width:70px; max-height:70px; transition: transform 0.3s; }
 .tool-logo:hover { transform: scale(1.2) rotate(-10deg); }
 
-/* Skills radial charts */
+/* Skills */
 .skills-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; }
-.skill-circle { position: relative; width:150px; height:150px; }
-.skill-circle svg { transform: rotate(-90deg); }
+.skill-circle { position:relative;width:150px;height:150px; }
+.skill-circle svg { transform:rotate(-90deg); }
 .skill-circle circle { fill:none; stroke-width:15; stroke-linecap:round; }
 .skill-circle .bg { stroke:#ddd; }
 body.dark .skill-circle .bg { stroke:#333; }
 .skill-circle .progress { stroke: url(#grad); stroke-dasharray: 440; stroke-dashoffset: 440; animation: progressAnim 2s forwards; }
 @keyframes progressAnim { to { stroke-dashoffset: var(--offset); } }
-.skill-circle .skill-label { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-weight:bold; font-size:1em; text-align:center; }
+.skill-circle .skill-label { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-weight:bold;text-align:center; font-size:1em; }
 
 /* Certifications */
 .cert-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:25px; }
-.cert-grid img { width:140px; transition: transform 0.3s, box-shadow 0.3s; border-radius:10px; }
+.cert-grid img { width:140px; border-radius:10px; transition: transform 0.3s, box-shadow 0.3s; }
 .cert-grid img:hover { transform: scale(1.1); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
 
 /* Responsive */
-@media(max-width:600px) { header h1{font-size:2.5em;} header p{font-size:1em;} }
+@media(max-width:600px){header h1{font-size:2.5em;} header p{font-size:1em;}}
+
 </style>
 </head>
 <body>
 
-<!-- Theme Toggle -->
 <button class="theme-toggle">Toggle Theme</button>
 
-<!-- Hero Section -->
 <header>
   <canvas id="particles-js"></canvas>
   <h1>John Charlas</h1>
   <p>Cloud Architect | Technical Manager | DevOps Specialist</p>
 </header>
 
-<!-- Experience Carousel -->
 <section class="experience">
-  <h2>Experience</h2>
-  <div class="swiper experience-swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat">
-        <h3>Technical Account Manager</h3>
-        <p>Red Hat | 2024–2025<br>Managed cloud migrations, optimized Linux deployments, customer support.</p>
-      </div>
-      <div class="swiper-slide">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS">
-        <h3>Solutions Architect</h3>
-        <p>AWS | 2022–2024<br>Designed high-availability architectures and automated deployments.</p>
-      </div>
-      <div class="swiper-slide">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible">
-        <h3>Automation Specialist</h3>
-        <p>Implemented Ansible automation, improved operational efficiency, managed integrations.</p>
-      </div>
+<h2>Experience</h2>
+<div class="swiper experience-swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat">
+      <h3>Technical Account Manager</h3>
+      <p>Red Hat | 2024–2025<br>Managed cloud migrations, optimized Linux deployments, customer support.</p>
     </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <div class="swiper-slide">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS">
+      <h3>Solutions Architect</h3>
+      <p>AWS | 2022–2024<br>Designed high-availability architectures and automated deployments.</p>
+    </div>
+    <div class="swiper-slide">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible">
+      <h3>Automation Specialist</h3>
+      <p>Implemented Ansible automation, improved operational efficiency, managed integrations.</p>
+    </div>
   </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
 </section>
 
-<!-- Tools Carousel -->
 <section class="tools">
-  <h2>Tools & Technologies</h2>
-  <div class="swiper tools-swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat"></div>
-      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS"></div>
-      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" alt="Kubernetes"></div>
-      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Docker_logo.svg" alt="Docker"></div>
-      <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible"></div>
-    </div>
-    <div class="swiper-pagination"></div>
+<h2>Tools & Technologies</h2>
+<div class="swiper tools-swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="Red Hat"></div>
+    <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/AWS_logo.svg" alt="AWS"></div>
+    <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Kubernetes_logo_without_workmark.svg" alt="Kubernetes"></div>
+    <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Docker_logo.svg" alt="Docker"></div>
+    <div class="swiper-slide tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Ansible-logo.svg" alt="Ansible"></div>
   </div>
+  <div class="swiper-pagination"></div>
+</div>
 </section>
 
-<!-- Skills -->
 <section class="skills">
-  <h2>Core Skills</h2>
-  <div class="skills-container">
-    <div class="skill-circle" style="--offset:132;"><svg width="150" height="150"><defs><linearGradient id="grad"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></linearGradient></defs><circle class="bg" cx="75" cy="75" r="70"/><circle class="progress" cx="75" cy="75" r="70"/></svg><div class="skill-label">System Architecture<br>90%</div></div>
-    <div class="skill-circle" style="--offset:66;"><svg width="150" height="150"><defs><linearGradient id="grad"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></linearGradient></defs><circle class="bg" cx="75" cy="75" r="70"/><circle class="progress" cx="75" cy="75" r="70"/></svg><div class="skill-label">Mission Critical<br>85%</div></div>
-    <div class="skill-circle" style="--offset:88;"><svg width="150" height="150"><defs><linearGradient id="grad"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></linearGradient></defs><circle class="bg" cx="75" cy="75" r="70"/><circle class="progress" cx="75" cy="75" r="70"/></svg><div class="skill-label">Customer Support<br>80%</div></div>
+<h2>Core Skills</h2>
+<div class="skills-container">
+  <div class="skill-circle" style="--offset:132;">
+    <svg width="150" height="150">
+      <defs><linearGradient id="grad"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1e3a8a"/></linearGradient></defs>
+      <circle class="bg" cx="75" cy="75" r="70"/>
+      <circle class="progress" cx="75" cy="75" r="70"/>
+    </svg>
+    <div class="skill-label">System Architecture<br>90%</div>
   </div>
+  <div class="skill-circle" style="--offset:66;">
+    <svg width="150" height="150">
+      <circle class="bg" cx="75" cy="75" r="70"/>
+      <circle class="progress" cx="75" cy="75" r="70"/>
+    </svg>
+    <div class="skill-label">Mission Critical<br>85%</div>
+  </div>
+  <div class="skill-circle" style="--offset:88;">
+    <svg width="150" height="150">
+      <circle class="bg" cx="75" cy="75" r="70"/>
+      <circle class="progress" cx="75" cy="75" r="70"/>
+    </svg>
+    <div class="skill-label">Customer Support<br>80%</div>
+  </div>
+</div>
 </section>
 
-<!-- Certifications -->
 <section class="certifications">
-  <h2>Certifications</h2>
-  <div class="cert-grid">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/CKA_cert_badge.png" alt="CKA Certification">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/AWS_Solutions_Architect_Professional.png" alt="AWS Solutions Architect">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="RHCA Certification">
-  </div>
+<h2>Certifications</h2>
+<div class="cert-grid">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/CKA_cert_badge.png" alt="CKA Certification">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/AWS_Solutions_Architect_Professional.png" alt="AWS Solutions Architect">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Red_Hat_logo.svg" alt="RHCA Certification">
+</div>
 </section>
 
-<!-- JS Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script>
 // Initialize Swipers
-const experienceSwiper = new Swiper('.experience-swiper', { slidesPerView: 1, spaceBetween: 30, loop: true, navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, pagination: { el: '.swiper-pagination', clickable: true } });
-const toolsSwiper = new Swiper('.tools-swiper', { slidesPerView: 3, spaceBetween: 20, loop: true, pagination: { el: '.swiper-pagination', clickable: true }, breakpoints: { 600:{slidesPerView:4}, 900:{slidesPerView:5} } });
+new Swiper('.experience-swiper',{slidesPerView:1,spaceBetween:30,loop:true,navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},pagination:{el:'.swiper-pagination',clickable:true}});
+new Swiper('.tools-swiper',{slidesPerView:3,spaceBetween:20,loop:true,pagination:{el:'.swiper-pagination',clickable:true},breakpoints:{600:{slidesPerView:4},900:{slidesPerView:5}}});
 
 // Theme toggle
-document.querySelector('.theme-toggle').addEventListener('click',()=>{document.body.classList.toggle('dark');});
+document.querySelector('.theme-toggle').addEventListener('click',()=>document.body.classList.toggle('dark'));
 
-// Particle JS
-particlesJS("particles-js", {
-  "particles": { "number": { "value": 80 }, "size": { "value": 3 }, "move": { "speed": 2 }, "line_linked": { "enable": true } },
-  "interactivity": { "events": { "onhover": { "enable": true, "mode": "repulse" } } }
-});
+// Particles.js
+particlesJS("particles-js",{particles:{number:{value:80},size:{value:3},move:{speed:2},line_linked:{enable:true}},interactivity:{events:{onhover:{enable:true,mode:"repulse"}}}});
 </script>
 </body>
 </html>
